@@ -5,14 +5,16 @@ local finders = require "telescope.finders"
 local conf = require("telescope.config").values
 local utils = require "telescope.utils"
 
+local M = {}
+
 local set_env_variable = function(key, value)
   local camel_key = "AWS_" .. string.upper(string.gsub(key, "(%l)([A-Z])", "%1_%2"))
   vim.env[camel_key] = value
 end
 
-local profiles = function(opts)
+M.profiles = function(opts)
   opts = opts or {}
-  pickers.new(opts, {
+  pickers.new(require("telescope.themes").get_dropdown(opts), {
     prompt_title = "AWS vault profiles",
     finder = finders.new_oneshot_job({"aws-vault", "list", "--profiles"}, opts),
     sorter = conf.generic_sorter(opts),
@@ -35,5 +37,5 @@ local profiles = function(opts)
   }):find()
 end
 
--- to execute the function
-profiles(require("telescope.themes").get_dropdown{})
+
+return M
