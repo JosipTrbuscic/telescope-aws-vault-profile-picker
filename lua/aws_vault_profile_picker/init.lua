@@ -12,7 +12,7 @@ local set_env_variable = function(key, value)
   vim.env[camel_key] = value
 end
 
-M.profiles = function(opts)
+M.aws_profile_picker = function(opts)
   opts = opts or {}
   pickers.new(require("telescope.themes").get_dropdown(opts), {
     prompt_title = "AWS vault profiles",

@@ -7,6 +7,6 @@ return require("telescope").register_extension {
   setup = function(ext_config, config)
   end,
   exports = {
-    profile_picker = require("aws_vault_profile_picker").profiles
+    aws_profile_picker = require("aws_vault_profile_picker").aws_profile_picker
   },
 }
